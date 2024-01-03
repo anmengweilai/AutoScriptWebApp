@@ -1,0 +1,60 @@
+{
+  "name": "AutoScriptWebApp",
+  "version": "2.0.0",
+  "private": true,
+  "description": "umi electron template",
+  "repository": "https://github.com/arvinxx/umi-electron-template.git",
+  "author": "Arvin Xu<arvinx@foxmail.com>",
+  "scripts": {
+    "build": "npm run build:renderer && npm run build:electron",
+    "build:electron": "npm run build  --prefix=packages/main",
+    "build:renderer": "npm run build  --prefix=packages/renderer",
+    "clean": "rm -rf dist release .eslintcache",
+    "dev:main": "npm run start --prefix=packages/main",
+    "dev:renderer": "npm run start --prefix=packages/renderer",
+    "electron:mac-zip": "ts-node scripts/buildMacZip.ts",
+    "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 electron scripts/update-electron-vendors.mjs",
+    "lint": "pnpm --filter=\"./packages/**\" run lint-eslint",
+    "lint-staged": "lint-staged",
+    "lint:fix": "max eslint --fix",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "release": "semantic-release",
+    "start": "concurrently \"npm run dev:main\" \"npm run dev:renderer\"",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write",
+      "pnpm run lint:fix"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17",
+    "@types/js-yaml": "^4",
+    "@types/node": "^18",
+    "@umijs/lint": "^4",
+    "commitlint-config-gitmoji": "^2",
+    "concurrently": "^7",
+    "cross-env": "^7",
+    "dotenv": "^10",
+    "electron": "^24",
+    "eslint": "^8",
+    "father": "^4",
+    "husky": "^8",
+    "js-yaml": "^4",
+    "lint-staged": "^10",
+    "prettier": "^2",
+    "prettier-plugin-organize-imports": "^3",
+    "prettier-plugin-packagejson": "^2",
+    "semantic-release": "^20",
+    "semantic-release-config-gitmoji": "^1",
+    "ts-node": "^10",
+    "tslib": "^2",
+    "typescript": "^5",
+    "unplugin-auto-expose": "0.0.4"
+  }
+}
