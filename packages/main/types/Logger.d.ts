@@ -1,5 +1,6 @@
+import type { Logger as _Logger } from 'log4js';
+
 declare namespace Main {
-  import type { Logger as _Logger } from 'log4js';
 
   type Logger = _Logger;
 

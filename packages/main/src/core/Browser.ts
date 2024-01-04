@@ -1,14 +1,16 @@
-import type { MainEvents } from '@umi-electron-template/common';
-import { BrowserWindowsIdentifier, isDev } from '@umi-electron-template/common';
-import type { BrowserWindowConstructorOptions } from 'electron';
-import { app, BrowserWindow, protocol } from 'electron';
-import { dev } from 'electron-is';
+import type {MainEvents} from '@umi-electron-template/common';
+import {BrowserWindowsIdentifier, isDev} from '@umi-electron-template/common';
+import type {BrowserWindowConstructorOptions} from 'electron';
+import {app, BrowserWindow, nativeImage, protocol, Tray} from 'electron';
+import {dev} from 'electron-is';
 import EventEmitter from 'events';
 
-import type { App } from './App';
+import type {App} from './App';
+import {join} from "node:path";
+import {logger} from "@/core/Logger/customLogger";
 
 protocol.registerSchemesAsPrivileged([
-  { scheme: 'app', privileges: { secure: true, standard: true } },
+  {scheme: 'app', privileges: {secure: true, standard: true}},
 ]);
 
 export interface BrowserWindowOpts extends BrowserWindowConstructorOptions {
@@ -33,6 +35,11 @@ export default class Browser extends EventEmitter {
    * @private
    */
   private _browserWindow?: BrowserWindow;
+
+  /**
+   * 托盘
+   */
+  private _tray?: Tray;
 
   /**
    * 标识符
@@ -71,13 +78,66 @@ export default class Browser extends EventEmitter {
     });
   }
 
+  loadTray = () => {
+    const icon = nativeImage.createFromPath(join(__dirname, './icon.png'));
+    const tray = new Tray(icon);
+    this._tray = tray;
+  }
+
+  /**
+   * 加载菜单
+   */
+  loadMenu = () => {
+    // Hide menu
+    const {Menu} = require('electron');
+    Menu.setApplicationMenu(null);
+
+    const contextMenu = Menu.buildFromTemplate([
+      {
+        label: 'Show',
+        click: function () {
+
+        },
+      },
+      {
+        label: 'Hide',
+        click: function () {
+
+        },
+      },
+      {
+        label: 'Exit',
+        click: function () {
+          app.quit();
+          process.exit(0);
+        },
+      },
+    ]);
+    this._tray?.setContextMenu(contextMenu);
+    this._tray?.setToolTip('Alas');
+    this._tray?.on('right-click', () => {
+      this._tray?.popUpContextMenu(contextMenu);
+    });
+
+  }
+
+
   /**
    * 加载地址路径
    * @param name 在 renderer 中的路径名称
    */
   loadUrl = (name: BrowserWindowsIdentifier) => {
     if (isDev) {
-      this.browserWindow.loadURL(`http://localhost:7777/${name}.html`);
+      this.browserWindow.loadURL(`http://localhost:7777/${name}.html`).catch(e=>{
+        /**
+         * TODO: 有时候会出现加载不出来的情况，暂时先这样处理 由于electron启动的比renderer快，所以会出现这种情况
+         */
+        logger.errorWithScope('main',`loadUrl:${e}`)
+        setTimeout(()=>{
+          this.loadUrl(name)
+        },1000)
+
+      })
     } else {
       this.browserWindow.loadURL(`app://./${name}.html`);
     }
@@ -139,14 +199,15 @@ export default class Browser extends EventEmitter {
       return this._browserWindow;
     }
 
-    const { identifier, title, width, height, devTools, ...res } = this.options;
+    const {identifier, title, width, height, devTools, ...res} = this.options;
 
     this._browserWindow = new BrowserWindow({
       ...res,
       width,
       height,
       title,
-
+      // 隐藏默认的框架栏 包括页面名称以及关闭按钮等
+      frame: false,
       webPreferences: {
         nodeIntegration: true,
 
@@ -157,9 +218,13 @@ export default class Browser extends EventEmitter {
       },
     });
 
-    this.loadUrl(identifier);
+    this._browserWindow.setMinimumSize(576, 396);
 
+    this.loadTray();
+    this.loadMenu();
+    this.loadUrl(identifier);
     this.loadDevTools();
+
 
     // 显示 devtools 就打开
     if (devTools) {

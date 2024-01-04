@@ -19,7 +19,7 @@
     "lint:fix": "max eslint --fix",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "release": "semantic-release",
-    "start": "concurrently \"npm run dev:main\" \"npm run dev:renderer\"",
+    "start": "concurrently \"npm run dev:renderer\" \"npm run dev:main\" ",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
