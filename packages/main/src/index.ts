@@ -1,4 +1,8 @@
-import { App } from './core/App';
+import {App} from './core/App';
 
-new App().bootstrap();
+new App()
+  .bootstrap()
+  .catch((e) => {
+    console.error(e);
+  });
 

@@ -21,4 +21,22 @@ export interface RendererEvents {
    */
   '/system/open-dev-tools': boolean;
 
+  /**
+   * SystemService
+   * 启动脚本服务
+   */
+  '/system/start-script-server': boolean;
+
+  /**
+   * SystemService
+   * 关闭脚本服务
+   */
+  '/system/stop-script-server': boolean;
+
+  /**
+   * SystemService
+   * 修改脚本服务的配置
+   */
+  '/system/change-script-server-config': boolean;
+
 }

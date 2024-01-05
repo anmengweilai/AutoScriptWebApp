@@ -1,12 +1,12 @@
-import type { TServiceModule } from '@/services';
-import { createLogProxy, createProtocol } from '@/utils';
-import { app, ipcMain } from 'electron';
-import { dev, windows } from 'electron-is';
-import { EventEmitter } from 'events';
+import type {TServiceModule} from '@/services';
+import {createLogProxy, createProtocol, getAppConfig} from '@/utils';
+import {app, ipcMain} from 'electron';
+import {dev, windows} from 'electron-is';
+import {EventEmitter} from 'events';
 
 import BrowserManager from './BrowserManager';
 import Logger from './Logger';
-import { ServiceStorage } from './ServiceStorage';
+import {ServiceStorage} from './ServiceStorage';
 
 import * as browserItems from '../browserItems';
 
@@ -32,6 +32,12 @@ export class App extends EventEmitter {
    */
   serviceEventMap: ServiceMap = new Map();
 
+  /**
+   * app 启动的统一配置信息
+   */
+  config: Record<any, any> & Partial<ReturnType<typeof getAppConfig>> = {};
+
+
   constructor() {
     super();
 
@@ -46,7 +52,7 @@ export class App extends EventEmitter {
     // 批量注册 service 中 event 事件 供 webview 消费
     this.serviceEventMap.forEach((serviceInfo, key) => {
       // 获取相应方法
-      const { service, methodName } = serviceInfo;
+      const {service, methodName} = serviceInfo;
 
       ipcMain.handle(key, async (e, ...data) => {
         // 输出日志
@@ -59,7 +65,7 @@ export class App extends EventEmitter {
           this.logger.error(error);
 
           // @ts-ignore
-          return { error: error.message };
+          return {error: error.message};
         }
       });
     });
@@ -75,15 +81,17 @@ export class App extends EventEmitter {
     this.browserManager.browsers.get('home')!.show();
   };
 
-  beforeQuit = () => {};
+  beforeQuit = () => {
+  };
 
   /**
    * 启动 app
    */
-  bootstrap = () => {
+  bootstrap = async () => {
     // protocol.registerSchemesAsPrivileged([
     //   { scheme: 'app', privileges: { secure: true, standard: true } },
     // ]);
+    await this.beforeInit();
 
     // 控制单例
     const isSingle = app.requestSingleInstanceLock();
@@ -150,7 +158,7 @@ export class App extends EventEmitter {
   /**
    * 初始化之前的操作
    */
-  beforeInit() {
+  async beforeInit() {
     // 替换报错 logger
     if (!dev()) {
       console.error = createLogProxy(
@@ -161,5 +169,23 @@ export class App extends EventEmitter {
 
     // 初始化数据库部分
     // await loadContainerAsync();
+    await this.loadAppConfig();
   }
+
+  loadAppConfig() {
+    const {logger} = this;
+    /**
+     * 1. 读取配置文件
+     */
+    logger.info('开始加载基础的配置信息');
+
+    /**
+     * 2. 将配置信息存储到 config 中
+     */
+
+    logger.info('基础的配置信息加载完毕');
+
+
+  }
+
 }
