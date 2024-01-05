@@ -21,6 +21,7 @@
     "@ant-design/icons": "^5",
     "@arvinxu/macos-traffic-light": "^3",
     "@auto-script-web-app/common": "2.0.0",
+
     "@umijs/max": "^4",
     "ahooks": "^3",
     "antd": "^5",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@testing-library/react": "^13",
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "@electron-toolkit/preload": "^1.0.3"
   }
 }

@@ -16,11 +16,9 @@ export interface RendererEvents {
   '/system/check-accessibility': boolean;
 
   /**
-   * 添加新用户
+   * SystemService
+   * 打开开发者工具
    */
-  '/user/add': any;
-  /**
-   * 查找所有用户
-   */
-  '/user/find-all': any;
+  '/system/open-dev-tools': boolean;
+
 }

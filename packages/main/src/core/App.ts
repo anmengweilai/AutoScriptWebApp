@@ -116,6 +116,8 @@ export class App extends EventEmitter {
       this.beforeQuit();
       app.exit();
     });
+
+
   };
 
   /**

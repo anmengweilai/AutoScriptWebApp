@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export default createStyles(({ css, token,prefixCls,cx }) => ({
+export default createStyles(({ css, token,prefixCls }) => ({
    asideContainer:css`
     height: 100%;
     background: ${token.colorBorderBg};
@@ -28,7 +28,11 @@ export default createStyles(({ css, token,prefixCls,cx }) => ({
     transition: transform 0.3s;
 
     &:hover > .${prefixCls}-typography {
-      color: ${token.colorLinkHover};
+      color: ${token.colorPrimaryHover};
+    }
+
+    &:hover > .asideIcon {
+      color: ${token.colorPrimaryHover};
     }
 
     &:after {
@@ -38,7 +42,7 @@ export default createStyles(({ css, token,prefixCls,cx }) => ({
       top: 0;
       width: 4px;
       height: 100%;
-      background: ${token.colorLinkHover};
+      background: ${token.colorPrimaryHover};
       transform: translateX(-100%);
       transition: transform 0.3s;
     }
@@ -49,13 +53,17 @@ export default createStyles(({ css, token,prefixCls,cx }) => ({
     font-size: ${token.fontSizeSM}px;
   `,
 
+  asideIconSelected:css`
+    color: ${token.colorPrimaryHover}
+  `,
+
   asideSelected:css`
     &:after {
       transform: translateX(0);
     }
 
     & > .${prefixCls}-typography {
-      color: ${token.colorLinkHover};
+      color: ${token.colorPrimaryHover};
     }
 
 

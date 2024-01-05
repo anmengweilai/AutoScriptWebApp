@@ -12,6 +12,7 @@
     "clean": "rm -rf dist release .eslintcache",
     "dev:main": "npm run start --prefix=packages/main",
     "dev:renderer": "npm run start --prefix=packages/renderer",
+    "dev:preload": "npm run start --prefix=packages/preload",
     "electron:mac-zip": "ts-node scripts/buildMacZip.ts",
     "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 electron scripts/update-electron-vendors.mjs",
     "lint": "pnpm --filter=\"./packages/**\" run lint-eslint",
@@ -19,7 +20,7 @@
     "lint:fix": "max eslint --fix",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "release": "semantic-release",
-    "start": "concurrently \"npm run dev:renderer\" \"npm run dev:main\" ",
+    "start": "concurrently \"npm run dev:preload\" \"npm run dev:renderer\" \"npm run dev:main\" ",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },

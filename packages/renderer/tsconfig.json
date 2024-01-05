@@ -5,6 +5,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
-    }
+    },
+    "typesRoot": ["./global.d.ts"]
   }
 }

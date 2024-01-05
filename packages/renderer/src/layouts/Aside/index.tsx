@@ -15,30 +15,29 @@ export interface AsideItem {
 }
 
 interface AsideProps {
-  items?: AsideItem[]
+  items?: AsideItem[],
+  defaultActivate?: React.Key;
 }
 
 const {Text} = Typography;
 
 const Aside: React.FC<AsideProps> = (props) => {
-  const {items: propsItems} = props;
+  const {items: propsItems,defaultActivate} = props;
 
+
+  const {styles, cx} = useStyles();
+
+  const [activate, setActivate] = useState<React.Key>(defaultActivate || '');
+
+  const handleActivate = (key: React.Key) => {
+    setActivate(key);
+  }
 
   const items = useMemo<AsideItem[] | undefined>(() => {
 
     return propsItems?.map(item => {
-      let _icon = null;
-      if (item.icon) {
-        _icon = React.cloneElement(item.icon, {
-          style: {
-            fontSize: 30
-          }
-        })
-      }
-
       return {
         ...item,
-        icon: _icon || <></>,
         key: item.key || nanoid()
       }
     })
@@ -46,18 +45,9 @@ const Aside: React.FC<AsideProps> = (props) => {
   }, [propsItems]);
 
 
-  const {styles, cx} = useStyles();
-
-  const [activate, setActivate] = useState<React.Key>(items?.[0].key || '');
-
-  const handleActivate = (key: React.Key) => {
-    setActivate(key);
-  }
-
-
   return (
     <Flex vertical className={styles.asideContainer}>
-      <Space size={'small'} direction={'vertical'} className={styles.asideSpace} >
+      <Space size={'small'} direction={'vertical'} className={styles.asideSpace}>
         {items?.map((item) => {
           return (
             <Flex
@@ -66,9 +56,14 @@ const Aside: React.FC<AsideProps> = (props) => {
               align={'center'}
               key={item.key}
               onClick={() => handleActivate(item.key as React.Key)}
-              className={cx(styles.asideItem,activate === item.key && styles.asideSelected)}
+              className={cx(styles.asideItem, activate === item.key && styles.asideSelected)}
             >
-              {item.icon}
+              {item.icon && React.cloneElement(item.icon, {
+                className: activate === item.key && styles.asideIconSelected,
+                style: {
+                  fontSize: 30,
+                }
+              })}
               <Text className={styles.asideTitle}>{item.title}</Text>
             </Flex>
           )

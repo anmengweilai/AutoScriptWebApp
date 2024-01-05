@@ -8,8 +8,9 @@ import {Avatar, Button, Space, Typography} from 'antd';
 import {
   BorderOutlined,
   CloseOutlined, LoadingOutlined,
-  MinusOutlined, ArrowDownOutlined
+  MinusOutlined, ArrowDownOutlined, CodeOutlined
 } from "@ant-design/icons";
+import {dispatch} from "@/utils/dispatch";
 
 interface HeaderProps {
   title?: string | React.ReactNode;
@@ -39,6 +40,9 @@ const Header: React.FC<HeaderProps> = (props) => {
       <Title level={5}>{title}</Title>
 
       <Space size={'small'}>
+        <Button type={'text'} icon={<CodeOutlined/>} onClick={async () => {
+          await dispatch('/system/open-dev-tools')
+        }}/>
         <Button type={'text'} icon={<ArrowDownOutlined/>}/>
         <Button type={'text'} icon={<MinusOutlined/>}/>
         <Button type={'text'} icon={<BorderOutlined/>}/>

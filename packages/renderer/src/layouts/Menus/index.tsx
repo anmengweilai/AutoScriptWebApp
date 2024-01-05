@@ -3,16 +3,33 @@
  *author: anmengweilai
  */
 import React from 'react'
-import {Flex} from "antd";
+import {Flex, Menu, MenuProps} from "antd";
+import useStyles from "./style";
 
-interface MenusProps {
-}
+type MenusProps = MenuProps
 
 const Menus: React.FC<MenusProps> = (props) => {
   const {} = props;
+
+  const {styles} = useStyles();
+
   return (
-    <Flex>
-      Menus
+    <Flex className={styles.menus}>
+      <Menu className={styles.menus} items={[
+        {
+          title: '主页',
+          key: 'home',
+          label: '主页',
+        },
+        {
+          label: '编辑',
+          key: 'edit',
+        },
+        {
+          label: '管理',
+          key: 'mage',
+        },
+      ]}/>
     </Flex>
   );
 };

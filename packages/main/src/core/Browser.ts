@@ -215,6 +215,7 @@ export default class Browser extends EventEmitter {
         // https://www.electronjs.org/docs/tutorial/context-isolation
         contextIsolation: true,
         // devTools: isDev,
+        preload: join(app.getAppPath(), '../preload/dist/index.js'),
       },
     });
 
@@ -224,6 +225,7 @@ export default class Browser extends EventEmitter {
     this.loadMenu();
     this.loadUrl(identifier);
     this.loadDevTools();
+
 
 
     // 显示 devtools 就打开

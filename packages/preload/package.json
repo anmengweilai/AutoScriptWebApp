@@ -5,6 +5,8 @@
   "description": "max electron template",
   "author": "Arvin Xu<arvinx@foxmail.com>",
   "scripts": {
+    "build": "father build",
+    "start": "father dev --watch",
     "lint-eslint": "max lint",
     "lint-staged": "lint-staged",
     "lint:fix": "max eslint --fix",

@@ -22,23 +22,26 @@ const MenuContainer: React.FC<MenuContainerProps> = (props) => {
   const menuList = useMemo(() => [
     {
       title: '主页',
-      icon: <DesktopOutlined  />
+      icon: <DesktopOutlined  />,
+      key: 'home',
     },
     {
       icon: <PlaySquareOutlined />,
-      title: '编辑'
+      title: '编辑',
+      key: 'edit',
     },
     {
       title: '管理',
-      icon: <SettingOutlined />
+      icon: <SettingOutlined />,
+      key: 'management',
     },
   ], []);
 
   return (
     <div className={styles.container}>
-     <Aside items={menuList} />
-      <Divider type={'vertical'} />
-      <Menus />
+     <Aside items={menuList} defaultActivate={'home'} />
+      <Divider className={styles.divider} type={'vertical'} />
+      <Menus items={[]} />
       {children}
     </div>
   );

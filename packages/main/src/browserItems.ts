@@ -5,4 +5,5 @@ export const home: BrowserWindowOpts = {
   identifier: BrowserWindowsIdentifier.home,
   width: 1280,
   height: 880,
+  // devTools: true,
 };
