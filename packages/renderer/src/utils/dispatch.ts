@@ -1,4 +1,4 @@
-import type { RendererEvents } from '@umi-electron-template/common';
+import type { RendererEvents } from '@auto-script-web-app/common';
 
 /**
  * webview 端请求 sketch 端 event 数据的方法

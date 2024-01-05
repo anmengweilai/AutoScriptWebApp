@@ -7,13 +7,17 @@ export default createStyles(({ css, token }) => ({
     height: calc(100vh - 50px);
   `,
   menus:css`
-    width: 50px;
     height: 100%;
     background: ${token.colorBorderBg};
     overflow: auto;
+    width: 72px;
+    padding-top: ${token.padding}px;
   `,
   menuItem:css`
-    width: 50px;
+    width: 100%;
+
+  `,
+  menuTitle:css`
 
   `
 

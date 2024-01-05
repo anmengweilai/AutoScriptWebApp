@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import type { MainEvents } from '@umi-electron-template/common';
+import type { MainEvents } from '@auto-script-web-app/common';
 
 /**
  * 在 renderer 监听 main 发过来的 event

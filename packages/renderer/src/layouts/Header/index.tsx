@@ -8,7 +8,7 @@ import {Avatar, Button, Space, Typography} from 'antd';
 import {
   BorderOutlined,
   CloseOutlined, LoadingOutlined,
-  MinusOutlined
+  MinusOutlined, ArrowDownOutlined
 } from "@ant-design/icons";
 
 interface HeaderProps {
@@ -25,6 +25,7 @@ const Header: React.FC<HeaderProps> = (props) => {
   const {styles} = useStyles();
 
 
+  // @ts-ignore
   return (
     <div className={styles.header}>
       <Space>
@@ -37,7 +38,8 @@ const Header: React.FC<HeaderProps> = (props) => {
 
       <Title level={5}>{title}</Title>
 
-      <Space>
+      <Space size={'small'}>
+        <Button type={'text'} icon={<ArrowDownOutlined/>}/>
         <Button type={'text'} icon={<MinusOutlined/>}/>
         <Button type={'text'} icon={<BorderOutlined/>}/>
         <Button type={'text'} icon={<CloseOutlined/>}/>
