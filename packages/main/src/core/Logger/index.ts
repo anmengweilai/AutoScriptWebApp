@@ -1,4 +1,4 @@
-import { isDev } from '@umi-electron-template/common';
+import { isDev } from '@auto-script-web-app/common';
 import chalk from 'chalk';
 import { app } from 'electron';
 import { arch, cpus, platform, release, totalmem } from 'os';

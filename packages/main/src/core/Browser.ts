@@ -1,5 +1,5 @@
-import type {MainEvents} from '@umi-electron-template/common';
-import {BrowserWindowsIdentifier, isDev} from '@umi-electron-template/common';
+import type {MainEvents} from '@auto-script-web-app/common';
+import {BrowserWindowsIdentifier, isDev} from '@auto-script-web-app/common';
 import type {BrowserWindowConstructorOptions} from 'electron';
 import {app, BrowserWindow, nativeImage, protocol, Tray} from 'electron';
 import {dev} from 'electron-is';

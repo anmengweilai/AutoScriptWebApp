@@ -1,4 +1,4 @@
-import { isDev } from '@umi-electron-template/common';
+import { isDev } from '@auto-script-web-app/common';
 import { app } from 'electron';
 import type { Configuration, Layout } from 'log4js';
 import { join } from 'path';

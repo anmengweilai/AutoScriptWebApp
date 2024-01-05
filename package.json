@@ -1,5 +1,5 @@
 {
-  "name": "AutoScriptWebApp",
+  "name": "auto-script-web-app",
   "version": "2.0.0",
   "private": true,
   "description": "umi electron template",
@@ -56,5 +56,8 @@
     "tslib": "^2",
     "typescript": "^5",
     "unplugin-auto-expose": "0.0.4"
+  },
+  "dependencies": {
+    "nanoid": "^5.0.4"
   }
 }

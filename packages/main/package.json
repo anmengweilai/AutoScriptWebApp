@@ -1,5 +1,5 @@
 {
-  "name": "@umi-electron-template/main",
+  "name": "@auto-script-web-app/main",
   "version": "2.0.0",
   "private": true,
   "description": "umi electron template",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^9",
-    "@umi-electron-template/common": "2.0.0",
+    "@auto-script-web-app/common": "2.0.0",
     "concurrently": "^8",
     "cross-env": "^7",
     "electron": "^26",

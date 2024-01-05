@@ -16,7 +16,7 @@ export default defineConfig({
     resolve: {
       alias: {
         '@': join(__dirname, 'src/'),
-        '@umi-electron-template/common': join(__dirname, '../common/src'),
+        '@auto-script-web-app/common': join(__dirname, '../common/src'),
       },
     },
     build: {

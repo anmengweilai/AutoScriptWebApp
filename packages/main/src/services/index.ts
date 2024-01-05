@@ -1,4 +1,4 @@
-import type { RendererEvents } from '@umi-electron-template/common';
+import type { RendererEvents } from '@auto-script-web-app/common';
 
 import type { App } from '../core/App';
 import { ServiceStorage } from '../core/ServiceStorage';

@@ -1,5 +1,5 @@
 {
-  "name": "@umi-electron-template/preload",
+  "name": "@auto-script-web-app/preload",
   "version": "2.0.0",
   "private": true,
   "description": "max electron template",
