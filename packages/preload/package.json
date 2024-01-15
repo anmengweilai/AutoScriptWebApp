@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.3",
-    "electron": "^24"
+    "electron": "^28"
   },
   "devDependencies": {
-    "vite": "^4"
+    "vite": "^5"
   }
 }

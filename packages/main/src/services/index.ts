@@ -1,7 +1,6 @@
-import type { RendererEvents } from '@auto-script-web-app/common';
-
-import type { App } from '../core/App';
-import { ServiceStorage } from '../core/ServiceStorage';
+import {ServiceStorage} from '@/core/ServiceStorage';
+import type {App} from '@/core/App';
+import type {RendererEvents} from '@alas/common';
 
 const baseDecorator =
   (name: string, showLog = true) =>

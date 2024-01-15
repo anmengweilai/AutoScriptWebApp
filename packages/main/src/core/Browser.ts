@@ -126,20 +126,23 @@ export default class Browser extends EventEmitter {
    * 加载地址路径
    * @param name 在 renderer 中的路径名称
    */
-  loadUrl = (name: BrowserWindowsIdentifier) => {
+  loadUrl = (name: BrowserWindowsIdentifier,count = 1) => {
+    if (count > 10) return;
     if (isDev) {
-      this.browserWindow.loadURL(`http://localhost:7777/${name}.html`).catch(e=>{
+      this.browserWindow.loadURL(`http://localhost:${process.env.WEB_PORT}/${name}.html`).catch(e=>{
         /**
          * TODO: 有时候会出现加载不出来的情况，暂时先这样处理 由于electron启动的比renderer快，所以会出现这种情况
          */
         logger.errorWithScope('main',`loadUrl:${e}`)
         setTimeout(()=>{
-          this.loadUrl(name)
+          this.loadUrl(name,++count)
         },1000)
 
       })
     } else {
-      this.browserWindow.loadURL(`app://./${name}.html`);
+      this.browserWindow.loadFile(join(__dirname, '../renderer/index.html'), {}).catch(err => {
+        this.app.logger.error(`loadUrl error ${err.message}`);
+      });
     }
   };
 
@@ -209,13 +212,15 @@ export default class Browser extends EventEmitter {
       // 隐藏默认的框架栏 包括页面名称以及关闭按钮等
       frame: false,
       webPreferences: {
-        nodeIntegration: true,
+        nodeIntegration: false,
+        sandbox: false,
+        webviewTag: false,
 
         // 上下文隔离环境
         // https://www.electronjs.org/docs/tutorial/context-isolation
         contextIsolation: true,
         // devTools: isDev,
-        preload: join(app.getAppPath(), '../preload/dist/index.js'),
+        preload: join(__dirname, '../preload/index.mjs'),
       },
     });
 

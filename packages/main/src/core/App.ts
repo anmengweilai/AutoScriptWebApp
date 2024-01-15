@@ -72,7 +72,7 @@ export class App extends EventEmitter {
   }
 
   onActivate = () => {
-    this.browserManager.browsers.get('home')!.show();
+    this.browserManager.browsers.get('index')!.show();
   };
 
   beforeQuit = () => {};

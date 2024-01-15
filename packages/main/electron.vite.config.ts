@@ -9,10 +9,14 @@ const target = 'node18';
 
 const externalPlugin = externalizeDepsPlugin({
   include: ['builder-util-runtime', 'umi-request'],
+  exclude: ['execa'],
 });
 
 export default defineConfig({
   main: {
+    optimizeDeps: {
+      include: ['linked-dep'],
+    },
     resolve: {
       alias: {
         '@': join(__dirname, 'src/'),
@@ -20,6 +24,9 @@ export default defineConfig({
       },
     },
     build: {
+      commonjsOptions: {
+        include: [/linked-dep/, /node_modules/],
+      },
       ssr: true,
       sourcemap: 'inline',
       minify: !isDev,
@@ -44,7 +51,7 @@ export default defineConfig({
       outDir: 'dist/preload',
       emptyOutDir: true,
     },
-    plugins: [preload.vite(), externalPlugin],
+    plugins: [preload.esbuild(), externalPlugin],
   },
 
   // 忽略 renderer 的构建

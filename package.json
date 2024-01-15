@@ -20,7 +20,7 @@
     "lint:fix": "max eslint --fix",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "release": "semantic-release",
-    "start": "concurrently \"npm run dev:preload\" \"npm run dev:renderer\" \"npm run dev:main\" ",
+    "start": "cross-env WEB_PORT=7777 IS_DEV=true concurrently \"npm run dev:preload\" \"npm run dev:renderer\" \"npm run dev:main\" ",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
@@ -42,7 +42,7 @@
     "concurrently": "^7",
     "cross-env": "^7",
     "dotenv": "^10",
-    "electron": "^24",
+    "electron": "^28",
     "eslint": "^8",
     "father": "^4",
     "husky": "^8",
@@ -56,9 +56,7 @@
     "ts-node": "^10",
     "tslib": "^2",
     "typescript": "^5",
-    "unplugin-auto-expose": "0.0.4"
-  },
-  "dependencies": {
+    "unplugin-auto-expose": "0.0.4",
     "nanoid": "^5.0.4"
   }
 }
