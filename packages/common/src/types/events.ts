@@ -1,4 +1,3 @@
-
 /**
  * main -> renderer 的广播事件
  */
