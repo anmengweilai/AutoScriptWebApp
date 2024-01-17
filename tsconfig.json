@@ -22,7 +22,10 @@
     "noEmitOnError": true,
     "types": [
       "node",
-      "vite/client",
+      "vite/client"
     ]
+  },
+  "ts-node": {
+    "esm": true
   }
 }

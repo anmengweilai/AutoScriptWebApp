@@ -4,6 +4,7 @@
   "private": true,
   "description": "auto script web app",
   "repository": "https://github.com/anmengweilai/auto-script-web-app.git",
+  "type": "module",
   "scripts": {
     "build": "npm run build:renderer && npm run build:electron",
     "build:electron": "npm run build  --prefix=packages/main",
@@ -13,7 +14,8 @@
     "dev:renderer": "npm run start --prefix=packages/renderer",
     "dev:preload": "npm run start --prefix=packages/preload",
     "electron:mac-zip": "ts-node scripts/buildMacZip.ts",
-    "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 electron scripts/update-electron-vendors.mjs && touch .webapprc",
+    "create:rc": "ts-node scripts/createRc",
+    "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 electron scripts/update-electron-vendors.mjs && npm run create:rc",
     "lint": "pnpm --filter=\"./packages/**\" run lint-eslint",
     "lint-staged": "lint-staged",
     "lint:fix": "max eslint --fix",
@@ -47,6 +49,7 @@
     "husky": "^8",
     "js-yaml": "^4",
     "lint-staged": "^10",
+    "nanoid": "^5.0.4",
     "prettier": "^2",
     "prettier-plugin-organize-imports": "^3",
     "prettier-plugin-packagejson": "^2",
@@ -56,6 +59,9 @@
     "tslib": "^2",
     "typescript": "^5",
     "unplugin-auto-expose": "0.0.4",
-    "nanoid": "^5.0.4"
+    "zx": "^7.2.3"
+  },
+  "dependencies": {
+
   }
 }
