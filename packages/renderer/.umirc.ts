@@ -16,4 +16,5 @@ export default defineConfig({
   antd: {},
   outputPath: resolve(__dirname, '../main/dist/renderer'),
   monorepoRedirect: {},
+
 });

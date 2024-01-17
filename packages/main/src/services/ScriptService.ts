@@ -1,7 +1,9 @@
-import {installerArgs, installerPath} from '@/config';
-import {PyShell} from '@/pyshell';
+import configInfo from '@/config';
+import {PyShell} from '@/utils/pyshell';
 import {ServiceModule, event} from '@/services/index';
-import {ALAS_RELAUNCH_ARGV} from '@alas/common';
+import {SCRIPT_RELAUNCH_ARGV} from '@web-app/common';
+
+const {installerPath,installerArgs} = configInfo
 
 export default class ScriptService extends ServiceModule {
   @event('/script/start-alas-server')
@@ -67,7 +69,7 @@ export default class ScriptService extends ServiceModule {
 
   @event('/script/start-install-server')
   startInstallerServer() {
-    if (process.argv.includes(ALAS_RELAUNCH_ARGV)) {
+    if (process.argv.includes(SCRIPT_RELAUNCH_ARGV)) {
       return false;
     }
     const {app} = this;

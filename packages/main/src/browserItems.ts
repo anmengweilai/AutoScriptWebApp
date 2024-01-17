@@ -1,5 +1,5 @@
 import type {BrowserWindowOpts} from '@/core/Browser';
-import {BrowserWindowsIdentifier} from '@auto-script-web-app/common';
+import {BrowserWindowsIdentifier} from '@web-app/common';
 
 export const index: BrowserWindowOpts = {
   identifier: BrowserWindowsIdentifier.index,

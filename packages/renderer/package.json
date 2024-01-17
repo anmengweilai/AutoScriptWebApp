@@ -1,13 +1,12 @@
 {
-  "name": "@auto-script-web-app/renderer",
+  "name": "@web-app/renderer",
   "version": "2.0.0",
   "private": true,
-  "description": "max electron template",
-  "author": "Arvin Xu<arvinx@foxmail.com>",
+  "description": "auto-script-web-app",
   "main": "main.js",
   "scripts": {
     "build": "max build",
-    "dev": "PORT=7777 max dev",
+    "dev": "max dev",
     "postinstall": "max setup",
     "lint-eslint": "max lint",
     "lint:fix": "max eslint --fix",
@@ -30,7 +29,7 @@
     "zustand": "^4"
   },
   "devDependencies": {
-    "@auto-script-web-app/common": "workspace:*",
+    "@web-app/common": "workspace:*",
     "@testing-library/react": "^13",
     "@types/react": "^18",
     "@types/react-dom": "^18",

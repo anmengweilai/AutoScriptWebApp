@@ -1,10 +1,10 @@
-import {AlasConfig, isMacOS} from '@alas/common';
+import {ScriptConfig, isMacOS} from '@web-app/common';
 import {systemPreferences} from 'electron';
 import {event, ServiceModule} from './index';
 import {checkIsFirst} from '@/utils/checkIsFirst';
 import {modifyConfigYaml} from '@/utils/modifyConfigYaml';
 import {copyFilesToDir} from '@/utils/copyFilesToDir';
-import {getAlasConfigDirFiles} from '@/utils/alasConfig';
+import {getAlasConfigDirFiles} from '@/utils/scriptConfig';
 
 export default class SystemService extends ServiceModule {
   /**
@@ -67,7 +67,7 @@ export default class SystemService extends ServiceModule {
   }
 
   @event('/system/modify-config-yaml')
-  modifyConfigYaml(data: {filePath: string; modifyConfig: AlasConfig}) {
+  modifyConfigYaml(data: {filePath: string; modifyConfig: ScriptConfig}) {
     modifyConfigYaml(data.filePath, data.modifyConfig as any);
     return true;
   }

@@ -3,16 +3,16 @@
  *author: anmengweilai
  */
 import React from 'react'
-import {Spin} from "antd";
+import {Spin, SpinProps} from "antd";
 
-interface LoadingProps {
+interface LoadingProps extends SpinProps {
   children?: React.ReactNode;
 }
 
 const Loading: React.FC<LoadingProps> = (props) => {
-  const {children} = props;
+  const {children, spinning = true, ...rest} = props;
   return (
-    <Spin>
+    <Spin spinning={spinning} {...rest}>
       {children}
     </Spin>
   );

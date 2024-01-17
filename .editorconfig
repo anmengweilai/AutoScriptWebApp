@@ -13,7 +13,7 @@ insert_final_newline = true
 trim_trailing_whitespace = false
 
 [license.txt]
-charset = GB2312
+charset = UTF-8
 
 [Makefile]
 indent_style = tab

@@ -1,9 +1,8 @@
 {
-  "name": "@auto-script-web-app/main",
+  "name": "@web-app/main",
   "version": "2.0.0",
   "private": true,
-  "description": "umi electron template",
-  "author": "Arvin Xu<arvinx@foxmail.com>",
+  "description": "auto script web app",
   "main": "dist/main/index.js",
   "type": "module",
   "scripts": {
@@ -29,14 +28,16 @@
     "electron-is": "^3",
     "electron-updater": "^4.6.5",
     "log4js": "^6.4.1",
-    "os-name": "^4",
+    "mustache": "^4.2.0",
+    "os-name": "^6",
+    "python-shell": "^5.0.0",
     "reflect-metadata": "^0.1.13",
-    "source-map-support": "^0.5.21",
-    "umi-request": "^1"
+    "source-map-support": "^0.5.21"
   },
   "devDependencies": {
+    "@web-app/common": "workspace:*",
     "@types/fs-extra": "^9",
-    "@auto-script-web-app/common": "workspace:*",
+    "@types/mustache": "^4.2.5",
     "concurrently": "^8",
     "cross-env": "^7",
     "electron": "^28",

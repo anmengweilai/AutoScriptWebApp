@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -19,6 +19,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "types": [
+      "node",
+      "vite/client",
+    ]
   }
 }

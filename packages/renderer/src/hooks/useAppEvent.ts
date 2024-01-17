@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import type { MainEvents } from '@auto-script-web-app/common';
+import type { MainEvents } from '@web-app/common';
 
 /**
  * 在 renderer 监听 main 发过来的 event

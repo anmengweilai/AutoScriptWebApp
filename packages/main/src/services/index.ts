@@ -1,6 +1,6 @@
 import {ServiceStorage} from '@/core/ServiceStorage';
 import type {App} from '@/core/App';
-import type {RendererEvents} from '@alas/common';
+import type {RendererEvents} from '@web-app/common';
 
 const baseDecorator =
   (name: string, showLog = true) =>

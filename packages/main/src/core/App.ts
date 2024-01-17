@@ -9,6 +9,7 @@ import Logger from './Logger';
 import {ServiceStorage} from './ServiceStorage';
 
 import * as browserItems from '../browserItems';
+import {PyShell} from "@/utils/pyshell";
 
 const importAll = (r: any) => Object.values(r).map((v: any) => v.default);
 
@@ -37,14 +38,15 @@ export class App extends EventEmitter {
    */
   config: Record<any, any> & Partial<ReturnType<typeof getAppConfig>> = {};
 
+  scriptManager: Map<string, PyShell> = new Map();
+
 
   constructor() {
     super();
 
     // 载入 services
     const services: TServiceModule[] = importAll(
-      // @ts-ignore
-      import.meta.globEager('../services/*Service.ts'),
+      import.meta.glob('../services/*Service.ts',{eager:true}),
     );
 
     services.forEach((service) => this.addService(service));
@@ -139,6 +141,14 @@ export class App extends EventEmitter {
   }
 
   /**
+   * 初始化 脚本服务
+   * @param service
+   */
+  initScriptService = (service: PyShell) => {
+    this.scriptManager.set(service.scriptPath, service);
+  };
+
+  /**
    * 添加 service
    * @param ServiceClass
    */
@@ -169,7 +179,7 @@ export class App extends EventEmitter {
 
     // 初始化数据库部分
     // await loadContainerAsync();
-    await this.loadAppConfig();
+    this.loadAppConfig();
   }
 
   loadAppConfig() {
@@ -187,5 +197,10 @@ export class App extends EventEmitter {
 
 
   }
+
+  destroy = () => {
+    this.beforeQuit();
+    app.quit();
+  };
 
 }

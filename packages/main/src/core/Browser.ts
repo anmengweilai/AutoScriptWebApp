@@ -1,12 +1,12 @@
-import type {MainEvents} from '@auto-script-web-app/common';
-import {BrowserWindowsIdentifier, isDev} from '@auto-script-web-app/common';
+import type {MainEvents} from '@web-app/common';
+import {BrowserWindowsIdentifier, isDev} from '@web-app/common';
 import type {BrowserWindowConstructorOptions} from 'electron';
 import {app, BrowserWindow, nativeImage, protocol, Tray} from 'electron';
 import {dev} from 'electron-is';
 import EventEmitter from 'events';
 
 import type {App} from './App';
-import {join} from "node:path";
+import {join} from "path";
 import {logger} from "@/core/Logger/customLogger";
 
 protocol.registerSchemesAsPrivileged([
@@ -125,11 +125,12 @@ export default class Browser extends EventEmitter {
   /**
    * 加载地址路径
    * @param name 在 renderer 中的路径名称
+   * @param count
    */
   loadUrl = (name: BrowserWindowsIdentifier,count = 1) => {
     if (count > 10) return;
     if (isDev) {
-      this.browserWindow.loadURL(`http://localhost:${process.env.WEB_PORT}/${name}.html`).catch(e=>{
+      this.browserWindow.loadURL(`http://localhost:${process.env.PORT}/${name}.html`).catch(e=>{
         /**
          * TODO: 有时候会出现加载不出来的情况，暂时先这样处理 由于electron启动的比renderer快，所以会出现这种情况
          */

@@ -1,8 +1,22 @@
-export default {
+import { Configuration } from 'electron-builder';
+/**
+ * electron-builder 配置文件
+ * 文档：https://www.electron.build/configuration/configuration
+ */
+
+const config: Configuration = {
   directories: {
     output: '../../release',
     buildResources: 'build',
   },
+
+  extraResources:[
+    {
+      from: 'resources',
+      to: '.',
+    }
+  ],
+
   files: ['dist'],
   extraMetadata: {
     version: process.env.npm_package_version,
@@ -11,9 +25,9 @@ export default {
   /**
    *  app 基础信息
    */
-  appId: 'com.arvinxx.umi-electron-template',
-  productName: 'Umi Electron Template',
-  copyright: 'Copyright © 2021 - Present Arvin Xu | All Right Reserved.',
+  appId: 'com.anmengweilai.auto-script-web-app',
+  productName: 'AutoScriptWebApp',
+  copyright: 'Copyright © 2021 - Present | All Right Reserved.',
 
   /**
    * 配置 notarize dmg
@@ -26,8 +40,8 @@ export default {
   afterSign:
     process.env.NOTARIZE === 'false'
       ? () => {
-          console.log('Skip notarize...');
-        }
+        console.log('Skip notarize...');
+      }
       : 'electron-builder-notarize',
 
   /**
@@ -96,7 +110,7 @@ export default {
   linux: {
     artifactName: '${name}_setup_${version}.${ext}',
     icon: 'build/icon.png',
-    synopsis: 'umi electron template',
+    synopsis: 'auto script web app',
     category: 'Development',
   },
 
@@ -114,3 +128,5 @@ export default {
   //   smartUnpack: true,
   // },
 };
+
+export default config

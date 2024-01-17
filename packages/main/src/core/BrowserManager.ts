@@ -1,4 +1,4 @@
-import type { MainEvents } from '@auto-script-web-app/common';
+import type { MainEvents } from '@web-app/common';
 
 import type { App } from './App';
 import type { BrowserWindowOpts } from './Browser';

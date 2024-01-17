@@ -1,19 +1,16 @@
-import { osx, windows as _windows, main, renderer } from 'electron-is/is';
+import { platform,is } from '@electron-toolkit/utils';
 
 /**
  * 判断是否是 mac 平台
  */
-export const isMacOS = osx();
+export const isMacOS = platform.isMacOS;
 
 /**
  * 判断是否是 windows
  */
-export const isWindows = _windows();
+export const isWindows = platform.isWindows;
 
-export const isMain = main();
 
-export const isRenderer = renderer();
-
-export const isDev = process.env.NODE_ENV === 'development';
+export const isDev = is.dev
 
 export const isTest = process.env.NODE_ENV === 'test';

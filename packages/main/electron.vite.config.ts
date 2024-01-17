@@ -1,14 +1,14 @@
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite';
 import { join } from 'node:path';
 import { preload } from 'unplugin-auto-expose';
+import {node} from '../../.electron-vendors.cache.json'
 
 const isDev = process.env.MODE !== 'development';
 
-// electron 24 版本使用 node18
-const target = 'node18';
+const target = `node${node}`;
 
 const externalPlugin = externalizeDepsPlugin({
-  include: ['builder-util-runtime', 'umi-request'],
+  include: ['builder-util-runtime',],
   exclude: ['execa'],
 });
 
@@ -20,7 +20,7 @@ export default defineConfig({
     resolve: {
       alias: {
         '@': join(__dirname, 'src/'),
-        '@auto-script-web-app/common': join(__dirname, '../common/src'),
+        '@web-app/common': join(__dirname, '../common/src'),
       },
     },
     build: {

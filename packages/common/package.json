@@ -1,5 +1,5 @@
 {
-  "name": "@auto-script-web-app/common",
+  "name": "@web-app/common",
   "version": "2.0.0",
   "private": true,
   "description": "max electron template",
@@ -16,7 +16,8 @@
     "test:coverage": "jest --coverage --passWithNoTests"
   },
   "dependencies": {
-    "electron-is": "^3",
-    "umi-request": "^1"
+    "@electron-toolkit/preload": "^3.0.0",
+    "@electron-toolkit/utils": "^3.0.0",
+    "electron-is": "^3"
   }
 }
