@@ -35,9 +35,9 @@
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
-    "@web-app/common": "workspace:*",
     "@types/fs-extra": "^9",
     "@types/mustache": "^4.2.5",
+    "@web-app/common": "workspace:*",
     "concurrently": "^8",
     "cross-env": "^7",
     "electron": "^28",
@@ -48,6 +48,7 @@
     "electron-vite": "^2",
     "happy-dom": "^9",
     "react-devtools": "^5",
+    "unplugin-auto-expose": "0.2.2",
     "vitest": "latest"
   }
 }

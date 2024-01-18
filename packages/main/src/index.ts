@@ -1,8 +1,6 @@
 import {App} from './core/App';
 
-new App()
-  .bootstrap()
-  .catch((e) => {
-    console.error(e);
-  });
+const webApp = new App();
+
+await webApp.bootstrap();
 

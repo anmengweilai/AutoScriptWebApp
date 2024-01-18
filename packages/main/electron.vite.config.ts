@@ -1,11 +1,11 @@
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite';
 import { join } from 'node:path';
 import { preload } from 'unplugin-auto-expose';
-import {node} from '../../.electron-vendors.cache.json'
+import {node as nodeVersion} from '../../.electron-vendors.cache.json'
 
 const isDev = process.env.MODE !== 'development';
 
-const target = `node${node}`;
+const target = `node${nodeVersion}`;
 
 const externalPlugin = externalizeDepsPlugin({
   include: ['builder-util-runtime',],
@@ -51,7 +51,7 @@ export default defineConfig({
       outDir: 'dist/preload',
       emptyOutDir: true,
     },
-    plugins: [preload.esbuild(), externalPlugin],
+    plugins: [preload.vite(), externalPlugin],
   },
 
   // 忽略 renderer 的构建
