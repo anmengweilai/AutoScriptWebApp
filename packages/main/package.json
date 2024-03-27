@@ -2,6 +2,10 @@
   "name": "@web-app/main",
   "version": "2.0.0",
   "private": true,
+  "author": {
+    "name": "anmengweilai",
+    "email": "chumengyouying@outlook.com"
+  },
   "description": "auto script web app",
   "main": "dist/main/index.js",
   "type": "module",
@@ -21,12 +25,13 @@
     "test": "vitest --passWithNoTests",
     "test:coverage": "vitest run --coverage",
     "type-check": "tsc -p tsconfig-check.json",
-    "postuninstall": "electron-builder install-app-deps"
+    "postuninstall": "electron-builder install-app-deps",
+    "clean:modules": "rm -rf node_modules"
   },
   "dependencies": {
     "chalk": "^4",
-    "electron-is": "^3",
     "electron-updater": "^4.6.5",
+    "execa": "^8.0.1",
     "log4js": "^6.4.1",
     "mustache": "^4.2.0",
     "os-name": "^6",

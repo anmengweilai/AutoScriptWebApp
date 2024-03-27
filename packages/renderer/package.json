@@ -2,6 +2,10 @@
   "name": "@web-app/renderer",
   "version": "2.0.0",
   "private": true,
+  "author": {
+    "name": "anmengweilai",
+    "email": "chumengyouying@outlook.com"
+  },
   "description": "auto-script-web-app",
   "main": "main.js",
   "scripts": {
@@ -14,14 +18,17 @@
     "start": "npm run dev",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "type-check": "tsc -p tsconfig-check.json"
+    "type-check": "tsc -p tsconfig-check.json",
+    "clean:modules": "rm -rf node_modules"
   },
   "dependencies": {
     "@ant-design/icons": "^5",
     "@umijs/max": "^4",
+    "@web-app/components": "workspace:*",
     "ahooks": "^3",
     "antd": "^5",
     "antd-style": "^3",
+    "rc-virtual-list": "^3.11.4",
     "react": "^18",
     "react-dom": "^18",
     "react-layout-kit": "^1",
@@ -29,9 +36,10 @@
   },
   "devDependencies": {
     "@electron-toolkit/preload": "^1.0.3",
-    "@web-app/common": "workspace:*",
     "@testing-library/react": "^13",
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "@web-app/common": "workspace:*"
+
   }
 }

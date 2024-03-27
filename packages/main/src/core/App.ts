@@ -1,7 +1,7 @@
 import type {TServiceModule} from '@/services';
-import {createLogProxy, createProtocol, getAppConfig} from '@/utils';
+import {createLogProxy, createProtocol, getScriptConfig} from '@/utils';
 import {app, ipcMain} from 'electron';
-import {dev, windows} from 'electron-is';
+import {isDev, isWindows, ScriptConfig} from "@web-app/common";
 import {EventEmitter} from 'events';
 
 import BrowserManager from './BrowserManager';
@@ -36,7 +36,7 @@ export class App extends EventEmitter {
   /**
    * app 启动的统一配置信息
    */
-  config: Record<any, any> & Partial<ReturnType<typeof getAppConfig>> = {};
+  config: Record<any, any> & Partial<ScriptConfig> = {};
 
   scriptManager: Map<string, PyShell> = new Map();
 
@@ -115,7 +115,7 @@ export class App extends EventEmitter {
     });
 
     app.on('window-all-closed', () => {
-      if (windows()) {
+      if (isWindows) {
         app.quit();
       }
     });
@@ -170,7 +170,7 @@ export class App extends EventEmitter {
    */
   async beforeInit() {
     // 替换报错 logger
-    if (!dev()) {
+    if (!isDev) {
       console.error = createLogProxy(
         'error',
         Logger.getLogger('error'),
@@ -179,10 +179,10 @@ export class App extends EventEmitter {
 
     // 初始化数据库部分
     // await loadContainerAsync();
-    this.loadAppConfig();
+    await this.loadAppConfig();
   }
 
-  loadAppConfig() {
+  async loadAppConfig() {
     const {logger} = this;
     /**
      * 1. 读取配置文件
@@ -192,6 +192,9 @@ export class App extends EventEmitter {
     /**
      * 2. 将配置信息存储到 config 中
      */
+
+    this.config =await getScriptConfig();
+
 
     logger.info('基础的配置信息加载完毕');
 

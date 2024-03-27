@@ -61,7 +61,7 @@ export interface RendererEvents {
    * SystemService
    * 获取alas配置文件夹下的文件
    */
-  '/system/get-alas-config-dir-files': {
+  '/system/get-script-config-dir-files': {
     configPath: string;
     files: Array<{name: string; path: string; lastModifyTime: Date}>;
   };
@@ -82,7 +82,7 @@ export interface RendererEvents {
    * SystemService
    * 修改系统主题
    */
-  '/system/get-alas-config': Record<any, any>;
+  '/system/get-script-config': Record<any, any>;
 
   /**
    * SystemService
@@ -115,9 +115,9 @@ export interface RendererEvents {
 
   /**
    * ScriptService
-   * 启动alas服务
+   * 启动script服务
    */
-  '/script/start-alas-server': boolean;
+  '/script/start-script-server': boolean;
 
   /**
    * ScriptService

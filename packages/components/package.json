@@ -1,12 +1,12 @@
 {
-  "name": "@web-app/preload",
+  "name": "@web-app/components",
   "version": "2.0.0",
   "private": true,
   "author": {
     "name": "anmengweilai",
     "email": "chumengyouying@outlook.com"
   },
-  "description": "auto script web app",
+  "description": "Scripting panel generic component with antd extra package",
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
@@ -19,13 +19,13 @@
     "test": "jest --passWithNoTests",
     "test:coverage": "jest --coverage --passWithNoTests",
     "clean:modules": "rm -rf node_modules"
-
   },
   "dependencies": {
-    "@electron-toolkit/preload": "^1.0.3",
-    "electron": "^28"
-  },
-  "devDependencies": {
-    "vite": "^5"
+    "@ant-design/antd-theme-variable": "^1.0.0",
+    "@ant-design/cssinjs": "^1.18.4",
+    "antd": "^5",
+    "dayjs": "^1.11.10",
+    "react": "^18",
+    "umi": "^4.1.2"
   }
 }

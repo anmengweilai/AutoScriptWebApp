@@ -15,7 +15,7 @@ Electron’s ‘remote’ module considered harmful | by Jeremy Rose | Medium
 // Main process
 global.thing = {
 rectangle: {
-getBounds() { return { x: 0, y: 0, width: 100, height: 100 } }
+getBounds() { return { x: 0, y: 0, width: 100, height: 100 } },
 setBounds(bounds) { /* ... */ }
 }
 }

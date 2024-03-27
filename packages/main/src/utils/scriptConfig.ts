@@ -10,7 +10,14 @@ import fs from 'fs';
 const {webuiArgs, webuiPath, alasPath} = configInfo;
 
 let alasConfig: ScriptConfig | null = null;
-export async function getAlasConfig() {
+
+export function getFileUpdateDate(path: string) {
+  const stat = fs.statSync(path);
+  return stat.mtime;
+}
+
+
+export async function getScriptConfig() {
   if (alasConfig === null) {
     const file = fs.readFileSync(path.join(alasPath, `./config/${SCRIPT_CONFIG_YAML}`), 'utf8');
     const config = yaml.parse(file) as DefConfig;
@@ -39,7 +46,7 @@ interface fileInfoItem {
   path: string;
   lastModifyTime: Date;
 }
-export function getAlasConfigDirFiles() {
+export function getScriptConfigDirFiles() {
   const configPath = path.join(alasPath, './config');
   const files: Dirent[] = fs.readdirSync(configPath, {withFileTypes: true});
   const filesInfoList: fileInfoItem[] = files.map((file: Dirent) => {
@@ -57,7 +64,3 @@ export function getAlasConfigDirFiles() {
   };
 }
 
-export function getFileUpdateDate(path: string) {
-  const stat = fs.statSync(path);
-  return stat.mtime;
-}

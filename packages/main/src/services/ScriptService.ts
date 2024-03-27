@@ -2,11 +2,12 @@ import configInfo from '@/config';
 import {PyShell} from '@/utils/pyshell';
 import {ServiceModule, event} from '@/services/index';
 import {SCRIPT_RELAUNCH_ARGV} from '@web-app/common';
+import {BrowserWindow} from "electron";
 
-const {installerPath,installerArgs} = configInfo
+const {installerPath, installerArgs} = configInfo
 
 export default class ScriptService extends ServiceModule {
-  @event('/script/start-alas-server')
+  @event('/script/start-script-server')
   startScriptServer() {
     /**
      * 启动外部的python脚本服务
@@ -14,7 +15,9 @@ export default class ScriptService extends ServiceModule {
 
     const {app} = this;
     const {config, logger} = app;
-    const browser = app.browserManager.browsers.get('index')!;
+    logger.info('start /script/start-script-server');
+    const currentBrowser = BrowserWindow.getFocusedWindow();
+    const browser = app.browserManager.browsers.get(currentBrowser!.getTitle())!;
     const dispatchEvent = browser.dispatchEvent.bind(browser);
     const {webuiPath, webuiArgs} = config;
     if (!webuiPath || !webuiArgs) {
@@ -23,7 +26,6 @@ export default class ScriptService extends ServiceModule {
     const alas = new PyShell(webuiPath, webuiArgs);
     // 把服务挂在到app上
     this.app.initScriptService(alas);
-
     /**
      * 监听相关的事件
      */
@@ -61,7 +63,7 @@ export default class ScriptService extends ServiceModule {
     });
 
     alas?.on('pythonError', err => {
-      logger.error('alas pythonError:' + err);
+      logger.error('pythonError:' + err);
     });
 
     return true;

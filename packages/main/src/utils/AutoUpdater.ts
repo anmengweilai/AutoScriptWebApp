@@ -1,4 +1,6 @@
-import { autoUpdater } from 'electron-updater';
+// import { autoUpdater } from 'electron-updater';
+import updater from 'electron-updater' // ✅
+
 
 /**
  * 还未实现考虑参考？
@@ -6,6 +8,6 @@ import { autoUpdater } from 'electron-updater';
  */
 export class AppUpdater {
   constructor() {
-    autoUpdater.checkForUpdatesAndNotify();
+    updater.autoUpdater.checkForUpdatesAndNotify();
   }
 }

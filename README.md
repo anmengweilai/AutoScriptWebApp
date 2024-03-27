@@ -9,7 +9,6 @@
 
 一个基于 [umi][umi] 和 [umi-plugin-electron-builder][umi-plugin-electron-builder] 的开发模板
 
-![预览](https://gw.alipayobjects.com/zos/antfincdn/k7TRgZNHSJ/1bbf755c-a3bf-45bd-a3f8-64745a93f8b2.png)
 
 ## 特性
 
@@ -23,8 +22,6 @@
 ### 内置功能
 
 - **样式框架**: 集成 [antd-style][tailwindcss]；
-- **数据持久化**: 集成 [sqlite3][sqlite3] 作为本地数据库， [TypeORM][typeorm] 作为 ORM；
-- **签名公证**: 集成 macOS App 签名与公证，包含在 CI/CD 流程中；
 
 ### 开发体验
 
@@ -40,7 +37,6 @@
 [redux-devtools]: https://github.com/reduxjs/redux-devtools
 [gitmoji-commit-workflow]: https://github.com/arvinxx/gitmoji-commit-workflow/
 [tailwindcss]: https://antd-style.arvinx.app/
-[sqlite3]: https://github.com/mapbox/node-sqlite3
 [typeorm]: https://typeorm.io/#/
 [inversify]: https://github.com/inversify/InversifyJS
 
@@ -50,10 +46,10 @@
 
 通过 git 下载这个仓库到本地
 
-然后通过 yarn 下载安装依赖
+然后通过 pnpm 下载安装依赖
 
 ```bash
-yarn
+pnpm
 ```
 
 ### 开发
@@ -61,13 +57,13 @@ yarn
 通过以下命令启动渲染进程(默认端口：7777)
 
 ```bash
-yarn start
+pnpm start
 ```
 
 ### 构建
 
 ```bash
-yarn build
+pnpm build
 ```
 
 构建文件会输出到 `release` 目录下：
@@ -99,4 +95,4 @@ release
 
 ## License
 
-[MIT](./LICENSE) ® Arvin Xu
+[MIT](./LICENSE)

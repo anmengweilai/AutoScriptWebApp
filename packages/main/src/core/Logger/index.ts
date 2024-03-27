@@ -2,7 +2,7 @@ import { isDev } from '@web-app/common';
 import chalk from 'chalk';
 import { app } from 'electron';
 import { arch, cpus, platform, release, totalmem } from 'os';
-import osName from 'os-name';
+// import osName from 'os-name';
 
 import { getLogger } from './customLogger';
 import { LogLevel, LogScope } from './types';
@@ -36,7 +36,7 @@ export default class Logger {
 
     this.logger.divider();
     this.logger.info(`操作系统： ${platform()} ${release()}(${arch()})`);
-    this.logger.info(`系统版本：${osName()}`);
+    // this.logger.info(`系统版本：${osName()}`);
     this.logger.info(`处理器： ${cpus().length}核`);
     this.logger.info(
       `总内存： ${(totalmem() / 1024 / 1024 / 1024).toFixed(0)}G`,

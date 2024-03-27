@@ -7,10 +7,7 @@ const isDev = process.env.MODE !== 'development';
 
 const target = `node${nodeVersion}`;
 
-const externalPlugin = externalizeDepsPlugin({
-  include: ['builder-util-runtime',],
-  exclude: ['execa'],
-});
+const externalPlugin = externalizeDepsPlugin();
 
 export default defineConfig({
   main: {
@@ -37,7 +34,7 @@ export default defineConfig({
       outDir: 'dist/main',
       emptyOutDir: true,
     },
-    plugins: [externalPlugin],
+    plugins: [externalPlugin,],
   },
   preload: {
     build: {
@@ -51,9 +48,8 @@ export default defineConfig({
       outDir: 'dist/preload',
       emptyOutDir: true,
     },
-    plugins: [preload.vite(), externalPlugin],
+    plugins: [preload.esbuild(), externalPlugin],
   },
-
   // 忽略 renderer 的构建
   renderer: {
     root: 'scripts',

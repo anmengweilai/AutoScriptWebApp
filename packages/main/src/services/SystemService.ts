@@ -4,7 +4,7 @@ import {event, ServiceModule} from './index';
 import {checkIsFirst} from '@/utils/checkIsFirst';
 import {modifyConfigYaml} from '@/utils/modifyConfigYaml';
 import {copyFilesToDir} from '@/utils/copyFilesToDir';
-import {getAlasConfigDirFiles} from '@/utils/scriptConfig';
+import {getScriptConfigDirFiles} from '@/utils/scriptConfig';
 
 export default class SystemService extends ServiceModule {
   /**
@@ -18,7 +18,8 @@ export default class SystemService extends ServiceModule {
 
   @event('/system/open-dev-tools')
   openDevTools() {
-    const {browserWindow} = this.app.browserManager.browsers.get('index') || {};
+    const [key] = this.app.browserManager.browsers.keys()
+    const {browserWindow} = this.app.browserManager.browsers.get(key) || {};
     if (browserWindow?.webContents.isDevToolsOpened()) {
       browserWindow?.webContents.closeDevTools();
     } else {
@@ -52,8 +53,8 @@ export default class SystemService extends ServiceModule {
     return checkIsFirst();
   }
 
-  @event('/system/get-alas-config')
-  async getAlasConfig() {
+  @event('/system/get-script-config')
+  async getScriptConfig() {
     await this.app.loadAppConfig();
     return this.app.config;
   }
@@ -72,9 +73,9 @@ export default class SystemService extends ServiceModule {
     return true;
   }
 
-  @event('/system/get-alas-config-dir-files')
-  getAlasConfigDirFiles() {
-    return getAlasConfigDirFiles();
+  @event('/system/get-script-config-dir-files')
+  getScriptConfigDirFiles() {
+    return getScriptConfigDirFiles();
   }
 
   @event('/system/copy-files-to-dir')

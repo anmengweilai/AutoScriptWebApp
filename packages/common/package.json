@@ -2,22 +2,23 @@
   "name": "@web-app/common",
   "version": "2.0.0",
   "private": true,
-  "description": "max electron template",
-  "author": "Arvin Xu<arvinx@foxmail.com>",
+  "author": {
+    "name": "anmengweilai",
+    "email": "chumengyouying@outlook.com"
+  },
+  "description": "auto script web app",
   "main": "src/index.ts",
   "scripts": {
-    "build": "father build",
-    "postinstall": "npm run build",
     "lint-eslint": "max lint",
     "lint-staged": "lint-staged",
     "lint:fix": "max eslint --fix",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "jest --passWithNoTests",
-    "test:coverage": "jest --coverage --passWithNoTests"
+    "test:coverage": "jest --coverage --passWithNoTests",
+    "clean:modules": "rm -rf node_modules"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
-    "@electron-toolkit/utils": "^3.0.0",
-    "electron-is": "^3"
+    "@electron-toolkit/utils": "^3.0.0"
   }
 }

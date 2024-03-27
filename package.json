@@ -2,6 +2,10 @@
   "name": "auto-script-web-app",
   "version": "2.0.0",
   "private": true,
+  "author": {
+    "name": "anmengweilai",
+    "email": "chumengyouying@outlook.com"
+  },
   "description": "auto script web app",
   "repository": "https://github.com/anmengweilai/auto-script-web-app.git",
   "type": "module",
@@ -23,7 +27,13 @@
     "release": "semantic-release",
     "start": "cross-env PORT=7777 concurrently \"npm run dev:preload\" \"npm run dev:renderer\" \"npm run dev:main\" ",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "clean:app": "rm -rf node_modules",
+    "clean:common": "npm run clean:modules --prefix=packages/common",
+    "clean:main": "npm run clean:modules --prefix=packages/main",
+    "clean:preload": "npm run clean:modules --prefix=packages/preload",
+    "clean:renderer": "npm run clean:modules --prefix=packages/renderer",
+    "clean:cache": "npm run clean:app && npm run clean:common && npm run clean:main && npm run clean:preload && npm run clean:renderer"
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [

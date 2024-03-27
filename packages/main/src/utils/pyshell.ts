@@ -13,7 +13,7 @@ export class PyShell extends PythonShell {
       pythonPath: pythonPath,
       scriptPath: alasPath,
     };
-    logger.info(`${pythonPath} ${script} ${args}`);
+    logger.info(`${alasPath} ${pythonPath} ${script} ${args}`);
     super(script, options);
   }
 

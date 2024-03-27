@@ -2,7 +2,6 @@ import type {MainEvents} from '@web-app/common';
 import {BrowserWindowsIdentifier, isDev} from '@web-app/common';
 import type {BrowserWindowConstructorOptions} from 'electron';
 import {app, BrowserWindow, nativeImage, protocol, Tray} from 'electron';
-import {dev} from 'electron-is';
 import EventEmitter from 'events';
 
 import type {App} from './App';
@@ -125,9 +124,10 @@ export default class Browser extends EventEmitter {
   /**
    * 加载地址路径
    * @param name 在 renderer 中的路径名称
-   * @param count
+   * @param _count
    */
-  loadUrl = (name: BrowserWindowsIdentifier,count = 1) => {
+  loadUrl = (name: BrowserWindowsIdentifier,_count = 1) => {
+    let count = _count;
     if (count > 10) return;
     if (isDev) {
       this.browserWindow.loadURL(`http://localhost:${process.env.PORT}/${name}.html`).catch(e=>{
@@ -152,7 +152,7 @@ export default class Browser extends EventEmitter {
    */
   loadDevTools = () => {
     // 生产环境直接结束
-    if (!(dev() || process.env.DEBUG === '1')) return;
+    if (!(isDev || process.env.DEBUG === '1')) return;
 
     app.whenReady().then(() => {
       const {
@@ -220,7 +220,7 @@ export default class Browser extends EventEmitter {
         // 上下文隔离环境
         // https://www.electronjs.org/docs/tutorial/context-isolation
         contextIsolation: true,
-        // devTools: isDev,
+        devTools: isDev,
         preload: join(__dirname, '../preload/index.mjs'),
       },
     });
